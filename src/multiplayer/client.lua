@@ -2,8 +2,9 @@ local client = {}
 local enet = require("enet")
 local map = require("src.map")
 local player = require("src.player")
-local protol = require("src.multiplayer.protocol")
-local function protocol.decode(str)
+local protocol = require("src.multiplayer.protocol")
+
+function protocol.decode(str)
     local tbl = {}
     for k, v in str:gmatch("([^;=]+)=([^;=]+)") do
         tbl[k] = tonumber(v) or v
@@ -11,7 +12,7 @@ local function protocol.decode(str)
     return tbl
 end
 
-local function protocol.code(tbl)
+function protocol.code(tbl)
     local result = {}
     for k, v in pairs(tbl) do
         table.insert(result, k .. "=" .. tostring(v))
