@@ -14,11 +14,15 @@ function hotbar.draw()
 		local item = inventory.list[i]
     	if item.name then
         	if i == inventory.selected then
-            	love.graphics.draw(items[inventory.list[i].name].texture, screen.mouse.x, screen.mouse.y, 0, 0.5, 0.5)
-             	love.graphics.setColor(0.5, 0.5, 0.5)
+                love.graphics.draw(items[inventory.list[i].name].texture, screen.mouse.x, screen.mouse.y, 0, 0.5, 0.5)
+                --love.graphics.setColor(0.5, 0.5, 0.5)
          	end
           	love.graphics.draw(items[inventory.list[i].name].texture, screen.pct_x(50) - ((assets.textures.inventory:getWidth() / 2)) + (i * 64) - 64, (screen.height - 20) - assets.textures.inventory:getHeight())
            	if i == inventory.selected then
+            	love.graphics.setColor(1, 1, 1)
+                love.graphics.setColor(1, 1, 0)
+                love.graphics.setLineWidth(4)
+                love.graphics.rectangle("line", ((screen.pct_x(50) - assets.textures.inventory:getWidth() / 2) + i*64)-64,(screen.height - 20) - assets.textures.inventory:getHeight() , 64, 64, 10, 10, 30)
             	love.graphics.setColor(1, 1, 1)
             end
 			if inventory.list[i].number > 1 then --drawing the number of item only if not 1 (4 seeing negative item)
